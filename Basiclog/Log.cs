@@ -36,6 +36,11 @@ namespace Basiclog
             return new Log(message, type);
         }
 
+        public static ILog New(string message, LogType logType, DateTime dateTime)
+        {
+            return new Log(message, logType, dateTime);
+        }
+
         public static ILog NewError(string message)
         {
             return new Log(message, LogType.Error);

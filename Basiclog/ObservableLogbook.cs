@@ -1,24 +1,33 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace Basiclog
 {
-    internal sealed class Logbook : ILogbook
+    internal sealed class ObservableLogbook : IObservableLogbook
     {
-        private readonly List<ILog> _logs = new List<ILog>();
+        private readonly ObservableCollection<ILog> _logs = new ObservableCollection<ILog>();
 
-        public bool HasError => _logs.Exists(x => x.LogType == LogType.Error);
-        public bool HasFailure => _logs.Exists(x => x.LogType == LogType.Failure);
-        public bool HasInfo => _logs.Exists(x => x.LogType == LogType.Info);
-        public bool HasSuccess => _logs.Exists(x => x.LogType == LogType.Success);
-        public bool HasWarning => _logs.Exists(x => x.LogType == LogType.Warning);
-        public int NumberOfError => _logs.Count(x => x.LogType == LogType.Error);
-        public int NumberOfFailure => _logs.Count(x => x.LogType == LogType.Failure);
-        public int NumberOfInfo => _logs.Count(x => x.LogType == LogType.Info);
-        public int NumberOfSuccess => _logs.Count(x => x.LogType == LogType.Success);
-        public int NumberOfWarning => _logs.Count(x => x.LogType == LogType.Warning);
+        public ObservableLogbook()
+        {
+            _logs.CollectionChanged += CollectionChanged;
+        }
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        public bool HasError => NumberOfError > 0;
+        public bool HasFailure => NumberOfFailure > 0;
+        public bool HasInfo => NumberOfInfo > 0;
+        public bool HasSuccess => NumberOfSuccess > 0;
+        public bool HasWarning => NumberOfWarning > 0;
+        public int NumberOfError => this.Count(x => x.LogType == LogType.Error);
+        public int NumberOfFailure => this.Count(x => x.LogType == LogType.Failure);
+        public int NumberOfInfo => this.Count(x => x.LogType == LogType.Info);
+        public int NumberOfSuccess => this.Count(x => x.LogType == LogType.Success);
+        public int NumberOfWarning => this.Count(x => x.LogType == LogType.Warning);
         public bool Safely => !HasError && !HasFailure;
 
         public void Add(ILog log)
@@ -33,12 +42,18 @@ namespace Basiclog
 
         public void AddRange(IEnumerable<ILog> logs)
         {
-            _logs.AddRange(logs);
+            foreach (ILog log in logs)
+            {
+                _logs.Add(log);
+            }
         }
 
         public void AddRange(params ILog[] logs)
         {
-            _logs.AddRange(logs);
+            foreach (ILog log in logs)
+            {
+                _logs.Add(log);
+            }
         }
 
         public void Clear()
@@ -48,7 +63,11 @@ namespace Basiclog
 
         public void Clear(Predicate<ILog> match)
         {
-            _logs.RemoveAll(match);
+            IEnumerable<ILog> matchedLogs = this.Where(x => match.Invoke(x));
+            foreach (ILog matchedLog in matchedLogs)
+            {
+                _logs.Remove(matchedLog);
+            }
         }
 
         public void Error(string message)

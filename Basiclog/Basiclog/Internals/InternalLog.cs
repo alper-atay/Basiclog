@@ -1,24 +1,24 @@
 ﻿using System;
 
-namespace Basiclog
+namespace Basiclog.Internals
 {
-    internal sealed class Log : ILog
+    internal sealed class InternalLog : ILog
     {
-        private Log()
+        private InternalLog()
         {
             Message = string.Empty;
             LogType = LogType.Info;
             DateTime = DateTime.Now;
         }
 
-        private Log(string message, LogType logType)
+        private InternalLog(string message, LogType logType)
         {
             Message = message;
             LogType = logType;
             DateTime = DateTime.Now;
         }
 
-        private Log(string message, LogType logType, DateTime dateTime)
+        private InternalLog(string message, LogType logType, DateTime dateTime)
         {
             Message = message;
             LogType = logType;
@@ -33,37 +33,37 @@ namespace Basiclog
 
         public static ILog New(string message, LogType type = LogType.Info)
         {
-            return new Log(message, type);
+            return new InternalLog(message, type);
         }
 
         public static ILog New(string message, LogType logType, DateTime dateTime)
         {
-            return new Log(message, logType, dateTime);
+            return new InternalLog(message, logType, dateTime);
         }
 
         public static ILog NewError(string message)
         {
-            return new Log(message, LogType.Error);
+            return new InternalLog(message, LogType.Error);
         }
 
         public static ILog NewFailure(string message)
         {
-            return new Log(message, LogType.Failure);
+            return new InternalLog(message, LogType.Failure);
         }
 
         public static ILog NewInfo(string message)
         {
-            return new Log(message, LogType.Info);
+            return new InternalLog(message, LogType.Info);
         }
 
         public static ILog NewSuccess(string message)
         {
-            return new Log(message, LogType.Success);
+            return new InternalLog(message, LogType.Success);
         }
 
         public static ILog NewWarning(string message)
         {
-            return new Log(message, LogType.Warning);
+            return new InternalLog(message, LogType.Warning);
         }
     }
 }

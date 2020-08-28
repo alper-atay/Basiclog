@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Basiclog.Internals;
+using System;
 
 namespace Basiclog
 {
@@ -8,22 +9,22 @@ namespace Basiclog
         {
             if (dateTime.HasValue)
             {
-                return Log.New(message, logType, dateTime.Value);
+                return InternalLog.New(message, logType, dateTime.Value);
             }
             else
             {
-                return Log.New(message, logType);
+                return InternalLog.New(message, logType);
             }
         }
 
         public static ILogbook NewLogbook()
         {
-            return new Logbook();
+            return new InternalLogbook();
         }
 
         public static IObservableLogbook NewObservableLogbook()
         {
-            return new ObservableLogbook();
+            return new InternalObservableLogbook();
         }
     }
 }

@@ -5,13 +5,13 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 
-namespace Basiclog
+namespace Basiclog.Internals
 {
-    internal sealed class ObservableLogbook : IObservableLogbook
+    internal sealed class InternalObservableLogbook : IObservableLogbook
     {
         private readonly ObservableCollection<ILog> _logs = new ObservableCollection<ILog>();
 
-        public ObservableLogbook()
+        public InternalObservableLogbook()
         {
             _logs.CollectionChanged += CollectionChanged;
         }
@@ -37,7 +37,7 @@ namespace Basiclog
 
         public void Add(string message, LogType logType)
         {
-            _logs.Add(Log.New(message, logType));
+            _logs.Add(InternalLog.New(message, logType));
         }
 
         public void AddRange(IEnumerable<ILog> logs)
@@ -72,27 +72,27 @@ namespace Basiclog
 
         public void Error(string message)
         {
-            _logs.Add(Log.NewError(message));
+            _logs.Add(InternalLog.NewError(message));
         }
 
         public void Failure(string message)
         {
-            _logs.Add(Log.NewFailure(message));
+            _logs.Add(InternalLog.NewFailure(message));
         }
 
         public void Info(string message)
         {
-            _logs.Add(Log.NewInfo(message));
+            _logs.Add(InternalLog.NewInfo(message));
         }
 
         public void Success(string message)
         {
-            _logs.Add(Log.NewSuccess(message));
+            _logs.Add(InternalLog.NewSuccess(message));
         }
 
         public void Warning(string message)
         {
-            _logs.Add(Log.NewWarning(message));
+            _logs.Add(InternalLog.NewWarning(message));
         }
 
         #region IEnumerable

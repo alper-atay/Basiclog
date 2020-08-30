@@ -26,5 +26,39 @@ namespace Basiclog
         {
             return new InternalObservableLogbook();
         }
+
+        public static IValuedLog NewValuedLog(object value, string message, LogType logType = LogType.Info, DateTime? dateTime = null)
+        {
+            if (dateTime.HasValue)
+            {
+                return InternalValuedLog.New(value, message, logType, dateTime.Value);
+            }
+            else
+            {
+                return InternalValuedLog.New(value, message, logType);
+            }
+        }
+
+        public static IValuedLog NewValuedLog<T>(T value, string message, LogType logType = LogType.Info, DateTime? dateTime = null)
+        {
+            if (dateTime.HasValue)
+            {
+                return InternalValuedLog<T>.New(value, message, logType, dateTime.Value);
+            }
+            else
+            {
+                return InternalValuedLog<T>.New(value, message, logType);
+            }
+        }
+
+        public static IValuedLogbook NewValuedLogbook()
+        {
+            return new InternalValuedLogbook();
+        }
+
+        public static IValuedLogbook<T> NewValuedLogbook<T>()
+        {
+            return new InternalValuedLogbook<T>();
+        }
     }
 }

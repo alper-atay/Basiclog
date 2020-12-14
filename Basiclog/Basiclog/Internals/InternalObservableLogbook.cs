@@ -19,15 +19,25 @@ namespace Basiclog.Internals
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         public bool HasError => NumberOfError > 0;
+
         public bool HasFailure => NumberOfFailure > 0;
+
         public bool HasInfo => NumberOfInfo > 0;
+
         public bool HasSuccess => NumberOfSuccess > 0;
+
         public bool HasWarning => NumberOfWarning > 0;
+
         public int NumberOfError => this.Count(x => x.LogType == LogType.Error);
+
         public int NumberOfFailure => this.Count(x => x.LogType == LogType.Failure);
+
         public int NumberOfInfo => this.Count(x => x.LogType == LogType.Info);
+
         public int NumberOfSuccess => this.Count(x => x.LogType == LogType.Success);
+
         public int NumberOfWarning => this.Count(x => x.LogType == LogType.Warning);
+
         public bool Safely => !HasError && !HasFailure;
 
         public void Add(ILog log)

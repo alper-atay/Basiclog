@@ -10,15 +10,25 @@ namespace Basiclog.Internals
         private readonly List<IValuedLog> _valuedLogs = new List<IValuedLog>();
 
         public bool HasError => _valuedLogs.Exists(x => x.LogType == LogType.Error);
+
         public bool HasFailure => _valuedLogs.Exists(x => x.LogType == LogType.Failure);
+
         public bool HasInfo => _valuedLogs.Exists(x => x.LogType == LogType.Info);
+
         public bool HasSuccess => _valuedLogs.Exists(x => x.LogType == LogType.Success);
+
         public bool HasWarning => _valuedLogs.Exists(x => x.LogType == LogType.Warning);
+
         public int NumberOfError => _valuedLogs.Count(x => x.LogType == LogType.Error);
+
         public int NumberOfFailure => _valuedLogs.Count(x => x.LogType == LogType.Failure);
+
         public int NumberOfInfo => _valuedLogs.Count(x => x.LogType == LogType.Info);
+
         public int NumberOfSuccess => _valuedLogs.Count(x => x.LogType == LogType.Success);
+
         public int NumberOfWarning => _valuedLogs.Count(x => x.LogType == LogType.Warning);
+
         public bool Safely => !HasError && !HasFailure;
 
         public void Add(IValuedLog valuedLog)
@@ -151,15 +161,25 @@ namespace Basiclog.Internals
         private readonly List<IValuedLog<T>> _valuedLogs = new List<IValuedLog<T>>();
 
         public bool HasError => _valuedLogs.Exists(x => x.LogType == LogType.Error);
+
         public bool HasFailure => _valuedLogs.Exists(x => x.LogType == LogType.Failure);
+
         public bool HasInfo => _valuedLogs.Exists(x => x.LogType == LogType.Info);
+
         public bool HasSuccess => _valuedLogs.Exists(x => x.LogType == LogType.Success);
+
         public bool HasWarning => _valuedLogs.Exists(x => x.LogType == LogType.Warning);
+
         public int NumberOfError => _valuedLogs.Count(x => x.LogType == LogType.Error);
+
         public int NumberOfFailure => _valuedLogs.Count(x => x.LogType == LogType.Failure);
+
         public int NumberOfInfo => _valuedLogs.Count(x => x.LogType == LogType.Info);
+
         public int NumberOfSuccess => _valuedLogs.Count(x => x.LogType == LogType.Success);
+
         public int NumberOfWarning => _valuedLogs.Count(x => x.LogType == LogType.Warning);
+
         public bool Safely => !HasError && !HasFailure;
 
         public void Add(IValuedLog<T> valuedLog)

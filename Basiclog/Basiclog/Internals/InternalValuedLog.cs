@@ -37,10 +37,15 @@ namespace Basiclog.Internals
         }
 
         public DateTime DateTime { get; }
+
         public LogType LogType { get; }
+
         public string Message { get; }
+
         public TimeSpan Time { get; }
+
         public string TimeString { get; }
+
         public object Value { get; }
 
         public static IValuedLog New(object value)
@@ -124,11 +129,17 @@ namespace Basiclog.Internals
         }
 
         public DateTime DateTime { get; }
+
         public LogType LogType { get; }
+
         public string Message { get; }
+
         public TimeSpan Time { get; }
+
         public string TimeString { get; }
+
         public T Value { get; }
+
         object IValuedLog.Value => Value;
 
         public static IValuedLog<T> New(T value)

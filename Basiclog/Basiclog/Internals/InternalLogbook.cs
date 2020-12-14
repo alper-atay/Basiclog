@@ -10,15 +10,25 @@ namespace Basiclog.Internals
         private readonly List<ILog> _logs = new List<ILog>();
 
         public bool HasError => _logs.Exists(x => x.LogType == LogType.Error);
+
         public bool HasFailure => _logs.Exists(x => x.LogType == LogType.Failure);
+
         public bool HasInfo => _logs.Exists(x => x.LogType == LogType.Info);
+
         public bool HasSuccess => _logs.Exists(x => x.LogType == LogType.Success);
+
         public bool HasWarning => _logs.Exists(x => x.LogType == LogType.Warning);
+
         public int NumberOfError => _logs.Count(x => x.LogType == LogType.Error);
+
         public int NumberOfFailure => _logs.Count(x => x.LogType == LogType.Failure);
+
         public int NumberOfInfo => _logs.Count(x => x.LogType == LogType.Info);
+
         public int NumberOfSuccess => _logs.Count(x => x.LogType == LogType.Success);
+
         public int NumberOfWarning => _logs.Count(x => x.LogType == LogType.Warning);
+
         public bool Safely => !HasError && !HasFailure;
 
         public void Add(ILog log)

@@ -26,9 +26,13 @@ namespace Basiclog.Internals
         }
 
         public DateTime DateTime { get; }
+
         public LogType LogType { get; }
+
         public string Message { get; }
+
         public TimeSpan Time => DateTime.TimeOfDay;
+
         public string TimeString => Time.ToString();
 
         public static ILog New(string message, LogType type = LogType.Info)

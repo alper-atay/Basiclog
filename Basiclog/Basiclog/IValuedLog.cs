@@ -5,7 +5,7 @@
         object Value { get; }
     }
 
-    public interface IValuedLog<out T> : IValuedLog
+    public interface IValuedLog<T> : IValuedLog
     {
         new T Value { get; }
     }

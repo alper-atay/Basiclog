@@ -6,7 +6,7 @@ namespace Basiclog
     {
     }
 
-    public interface IReadOnlyValuedLogbook<out T> : IReadOnlyValuedLogbook, IEnumerable<IValuedLog<T>>
+    public interface IReadOnlyValuedLogbook<T> : IReadOnlyValuedLogbook, IEnumerable<IValuedLog<T>>
     {
     }
 }

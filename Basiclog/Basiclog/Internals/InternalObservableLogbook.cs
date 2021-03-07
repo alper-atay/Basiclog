@@ -40,6 +40,8 @@ namespace Basiclog.Internals
 
         public bool Safely => !HasError && !HasFailure;
 
+        public string Name { get; }
+
         public void Add(ILog log)
         {
             _logs.Add(log);

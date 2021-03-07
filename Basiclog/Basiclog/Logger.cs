@@ -1,5 +1,6 @@
 ﻿using Basiclog.Internals;
 using System;
+using System.IO;
 
 namespace Basiclog
 {
@@ -15,6 +16,14 @@ namespace Basiclog
             {
                 return InternalLog.New(message, logType);
             }
+        }
+
+        public static void WriteToFile(this IReadOnlyLogbook logs, string filePath)
+        {
+            var fileStream = File.Open(filePath, FileMode.OpenOrCreate);
+
+            StringWriter stringWriter = new StringWriter();
+
         }
 
         public static ILogbook NewLogbook()

@@ -14,6 +14,8 @@ namespace Basiclog
 
         bool HasWarning { get; }
 
+        string Name { get; }
+
         int NumberOfError { get; }
 
         int NumberOfFailure { get; }

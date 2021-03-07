@@ -9,6 +9,18 @@ namespace Basiclog.Internals
     {
         private readonly List<ILog> _logs = new List<ILog>();
 
+        public InternalLogbook(string name = default)
+        {
+            if (name is null)
+            {
+                Name = string.Empty;
+            }
+            else
+            {
+                Name = name;
+            }
+        }
+
         public bool HasError => _logs.Exists(x => x.LogType == LogType.Error);
 
         public bool HasFailure => _logs.Exists(x => x.LogType == LogType.Failure);
@@ -18,6 +30,8 @@ namespace Basiclog.Internals
         public bool HasSuccess => _logs.Exists(x => x.LogType == LogType.Success);
 
         public bool HasWarning => _logs.Exists(x => x.LogType == LogType.Warning);
+
+        public string Name { get; }
 
         public int NumberOfError => _logs.Count(x => x.LogType == LogType.Error);
 

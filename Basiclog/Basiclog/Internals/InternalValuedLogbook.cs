@@ -31,6 +31,8 @@ namespace Basiclog.Internals
 
         public bool Safely => !HasError && !HasFailure;
 
+        public string Name { get; }
+
         public void Add(IValuedLog valuedLog)
         {
             _valuedLogs.Add(valuedLog);
@@ -181,6 +183,8 @@ namespace Basiclog.Internals
         public int NumberOfWarning => _valuedLogs.Count(x => x.LogType == LogType.Warning);
 
         public bool Safely => !HasError && !HasFailure;
+
+        public string Name { get; }
 
         public void Add(IValuedLog<T> valuedLog)
         {

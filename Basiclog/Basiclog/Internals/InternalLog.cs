@@ -35,6 +35,11 @@ namespace Basiclog.Internals
 
         public string TimeString => Time.ToString();
 
+        public override string ToString()
+        {
+            return $"[{DateTime}]:{LogType} '{Message}'";
+        }
+
         public static ILog New(string message, LogType type = LogType.Info)
         {
             return new InternalLog(message, type);
